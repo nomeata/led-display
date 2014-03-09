@@ -38,6 +38,7 @@ xmlToScreenElement f e
         readFromGif $ "icons" </> basename ++ ".gif"
   | n == "thintext" = return $ text thinfont (strContent e)
   | n == "text"     = return $ text f (strContent e)
+  | n == "bright"   = return $ brightScreenElem
   | otherwise = error $ "Unknown element  " ++ show e
 
   where

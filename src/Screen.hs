@@ -187,3 +187,6 @@ transitions = M.fromList
     , ("rollup", rollUp)
     ]
 
+brightScreenElem :: ScreenElement
+brightScreenElem = ScreenElement (0,0) $ \r _ -> generateScreen r (\ _ _ -> True)
+
