@@ -1,0 +1,66 @@
+name:                led-display
+version:             0.1
+synopsis:            Displays stuff on a LED display
+description:         Program to display stuff (text, icons) via combinators
+                     (scroll, alternate, layouting) on a DreamDigical LED display.
+license:             BSD3
+license-file:        LICENSE
+author:              Joachim Breitner
+maintainer:          mail@joachim-breitner.de
+copyright:           2014 Joachim Breitner 
+category:            Graphics
+build-type:          Simple
+cabal-version:       >=1.8
+
+executable led-display
+  default-language:
+    Haskell2010
+  main-is:
+    led-main.hs
+  other-modules:
+    Fonts
+    LedXML
+    ScreenFile
+    Screen
+    Sinus
+    Types
+    USB
+  build-depends:
+    base ==4.6.*
+    , JuicyPixels ==3.1.*
+    , containers ==0.5.*
+    , ansi-terminal ==0.6.*
+    , usb ==1.2.*
+    , bytestring ==0.10.*
+    , vector ==0.10.*
+    , fsnotify ==0.0.*
+    , filepath ==1.3.*
+    , system-filepath ==0.4.*
+    , xml ==1.3.*
+  hs-source-dirs:      src
+
+executable led-display-terminal
+  default-language:
+    Haskell2010
+  main-is:
+    terminal-main.hs
+  other-modules:
+    Fonts
+    LedXML
+    ScreenFile
+    Screen
+    Sinus
+    Terminal
+    Types
+  build-depends:
+    base ==4.6.*
+    , JuicyPixels ==3.1.*
+    , containers ==0.5.*
+    , ansi-terminal ==0.6.*
+    , bytestring ==0.10.*
+    , vector ==0.10.*
+    , fsnotify ==0.0.*
+    , filepath ==1.3.*
+    , system-filepath ==0.4.*
+    , xml ==1.3.*
+  hs-source-dirs:      src
