@@ -1,0 +1,9 @@
+config = {
+    'nagios-url': 'https://nagios.example.com/check_mk/view.py?view_name=allservices&output_format=json',
+    'nagios-username': 'nagios-info',
+    'nagios-password': 'password',
+
+    'forecast-key': "deadbeefdeadbeefdeadbeefdeadbeef",
+    'forecast-lat': '49.0313',
+    'forecast-lon':  '8.4390',
+}
