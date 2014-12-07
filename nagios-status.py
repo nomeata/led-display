@@ -27,7 +27,8 @@ problems = state['CRIT'] + state['WARN']
 
 if problems == 0:
     #print "<spaceout><icon>smiley</icon><thintext>%d</thintext><icon>smiley</icon></spaceout>" % state['OK']
-    print "<center><icon>smiley</icon></center>"
+    #print "<center><icon>smiley</icon></center>"
+    pass
 else:
     print "<spaceout><icon>skull</icon><thintext>%d</thintext><icon>skull</icon></spaceout>" % problems
 
