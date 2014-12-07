@@ -147,6 +147,7 @@ alternate elems = ScreenElement (w,h) $ \(w,h) f ->
 
 alternateScroll :: Transition -> [ScreenElement] -> ScreenElement
 alternateScroll tran [] = toElem $ blankScreen (0,0)
+alternateScroll tran [e] = e
 alternateScroll tran elems = ScreenElement (w,h) $ \(w,h) f ->
     let i1  = seRender (elems !! ( (f `div` duration)      `mod` length elems)) (w,h) f
         i2 = seRender (elems !! (((f `div` duration) + 1) `mod` length elems)) (w,h) f
