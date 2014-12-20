@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import requests
+import ast
 
 from config import config
 
@@ -8,22 +9,20 @@ response = requests.get(
     config['nagios-url'],
     auth=(config['nagios-username'], config['nagios-password']),
     verify=False) # no SNI :-(
-brokenjsontxt = str(response.content)
 
-jsontxt = brokenjsontxt.replace(u'''['service_state', 'service_description', 'svc_plugin_output', 'service_icons', 'svc_state_age', 'svc_check_age', 'perfometer'],''', '')
+raw_data = ast.literal_eval(str(response.content))
 
-import simplejson
-data = simplejson.loads(jsontxt)
+# state = {'OK': 0, 'WARN': 0, 'CRIT': 0}
+#state = [0,0,0]
 
-state = {'OK': 0, 'WARN': 0, 'CRIT': 0}
+bad_state = set((1,2))
+problems = 0
 
-for l in data:
-    s = l[0]
-    if s not in state:
-        state[s] = 0
-    state[s] += 1
-
-problems = state['CRIT'] + state['WARN']
+for l in raw_data:
+    if l['service_acknowledged']:
+	continue
+    if l['service_state'] in bad_state:
+	problems += 1
 
 if problems == 0:
     #print "<spaceout><icon>smiley</icon><thintext>%d</thintext><icon>smiley</icon></spaceout>" % state['OK']

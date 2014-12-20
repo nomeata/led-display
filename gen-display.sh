@@ -1,8 +1,8 @@
 #!/bin/bash
 cat <<__END__ > display.xml.new
 <alternate transition="scrollUp">
-$(./nagios-status.py)
 $(./forecast.py)
+$(./nagios-status.py)
 $(./yucata.sh)
 </alternate>
 __END__
