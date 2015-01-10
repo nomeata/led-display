@@ -19,6 +19,7 @@ icons = {
     'partly-cloudy-night': 'partly-cloudy',
     'rain': 'rain',
     'snow': 'snow',
+    'wind': 'wind',
     }
 
 now = forecast.currently()
