@@ -3,7 +3,6 @@ import System.Environment
 import Control.Concurrent
 import System.FSNotify
 import System.FilePath
-import qualified Filesystem.Path.CurrentOS as FP
 import Data.IORef
 
 import Types
@@ -16,20 +15,20 @@ import LedXML
 main = openLEDDevice $ \setScreen -> do
     font <- readFont
     [filename] <- getArgs
-    elemRef <- reReadFile (readXMLFile font) filename 
+    elemRef <- reReadFile (readXMLFile font) filename
 
     renderLoop setScreen elemRef
 
 reReadFile :: (FilePath -> IO a) -> FilePath -> IO (IORef a)
 reReadFile read name = do
-    let name' = FP.decodeString name
+    -- let name' = FP.decodeString name
     x <- read name
     ref <- newIORef x
     manager <- startManager
-    watchDir manager (FP.directory name')
-        (\e -> case e of Modified p _ -> FP.filename p == FP.filename name'
-                         Added p _    -> FP.filename p == FP.filename name'
-                         _            -> False)
+    watchDir manager name
+        (\e -> case e of Modified p _ _ -> p == name
+                         Added p _ _    -> p == name
+                         _              -> False)
         (\e -> read name >>= writeIORef ref)
     return ref
 

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import forecastio
 
@@ -31,9 +31,9 @@ for m in forecast.minutely().data + forecast.hourly().data + forecast.daily().da
             later = m
 
 if now.icon not in icons:
-    print '<hscroll><text>Need "%s"</text></hscroll>' % now.icon
+    print('<hscroll><text>Need "%s"</text></hscroll>' % now.icon)
 elif later and later.icon not in icons:
-    print '<hscroll><text>Need "%s"</text></hscroll>' % later.icon
+    print('<hscroll><text>Need "%s"</text></hscroll>' % later.icon)
 elif later:
     minutes = int((later.time -now.time).total_seconds() / 60)
 
@@ -48,6 +48,6 @@ elif later:
     else:
         desc = str(minutes)
 
-    print '<spaceout><icon>%s</icon><thintext>%s</thintext><icon>%s</icon></spaceout>' % (icons[now.icon], desc, icons[later.icon])
+    print('<spaceout><icon>%s</icon><thintext>%s</thintext><icon>%s</icon></spaceout>' % (icons[now.icon], desc, icons[later.icon]))
 else:
-    print '<center><icon>%s</icon></center>' % icons[now.icon]
+    print('<center><icon>%s</icon></center>' % icons[now.icon])

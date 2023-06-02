@@ -1,3 +1,3 @@
 [submodule "yucata-tools"]
 	path = yucata-tools
-	url = git+ssh://gitolite@git.nomeata.de/yucata-tools.git
+	url = https://github.com/nomeata/yucata-tools

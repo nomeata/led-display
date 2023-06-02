@@ -42,7 +42,7 @@ openLEDDevice cont = do
             Just dev -> withDeviceHandle dev $ \h -> forever $ do
                     s <- readIORef ref
                     forM_ (toPkg s) $ \p -> do
-                        writeControl h Class ToEndpoint 0x09 0 0 p 1000
+                        writeControl h (ControlSetup Class ToEndpoint 0x09 0 0) p 1000
                     threadDelay fRAME_DELAY
     cont (writeIORef ref)
 
